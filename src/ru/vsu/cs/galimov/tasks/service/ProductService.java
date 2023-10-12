@@ -4,6 +4,7 @@ import ru.vsu.cs.galimov.tasks.model_objects.Product;
 
 import java.util.List;
 
+// todo
 public interface ProductService {
     void addProduct(Product product);
 

@@ -6,11 +6,11 @@ import ru.vsu.cs.galimov.tasks.model_objects.Product;
 import java.util.ArrayList;
 import java.util.List;
 
-public class inMemoryRepositoryProductImplementation implements ProductRepository, IdGenerator {
+public class InMemoryRepositoryProductImplementation implements ProductRepository, IdGenerator {
     private final List<Product> products;
     private int currProdId = 0;
 
-    public inMemoryRepositoryProductImplementation() {
+    public InMemoryRepositoryProductImplementation() {
         this.products = new ArrayList<>();
     }
 

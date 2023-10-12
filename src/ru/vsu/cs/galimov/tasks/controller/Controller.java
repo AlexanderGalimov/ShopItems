@@ -1,11 +1,10 @@
 package ru.vsu.cs.galimov.tasks.controller;
 
-import ru.vsu.cs.galimov.tasks.logic.InputChecker;
 import ru.vsu.cs.galimov.tasks.logic.Logic;
 import ru.vsu.cs.galimov.tasks.model_objects.Department;
 import ru.vsu.cs.galimov.tasks.model_objects.Product;
-import ru.vsu.cs.galimov.tasks.repository.inMemoryRepositoryDepartmentImplementation;
-import ru.vsu.cs.galimov.tasks.repository.inMemoryRepositoryProductImplementation;
+import ru.vsu.cs.galimov.tasks.repository.InMemoryRepositoryDepartmentImplementation;
+import ru.vsu.cs.galimov.tasks.repository.InMemoryRepositoryProductImplementation;
 import ru.vsu.cs.galimov.tasks.service.DepartmentService;
 import ru.vsu.cs.galimov.tasks.service.ProductService;
 
@@ -13,16 +12,12 @@ import java.util.List;
 
 public class Controller implements DepartmentService, ProductService {
     private static Controller INSTANCE;
-    private final inMemoryRepositoryProductImplementation products;
-    private final inMemoryRepositoryDepartmentImplementation departments;
-    private final Logic logic;
-    private final InputChecker checker;
+    private final InMemoryRepositoryProductImplementation products;
+    private final InMemoryRepositoryDepartmentImplementation departments;
 
     private Controller() {
-        logic = new Logic();
-        checker = new InputChecker();
-        products = new inMemoryRepositoryProductImplementation();
-        departments = new inMemoryRepositoryDepartmentImplementation();
+        products = new InMemoryRepositoryProductImplementation();
+        departments = new InMemoryRepositoryDepartmentImplementation();
     }
 
     public static Controller getINSTANCE() {
@@ -32,9 +27,18 @@ public class Controller implements DepartmentService, ProductService {
         return INSTANCE;
     }
 
+    public boolean isInDepartment(int id) {
+        for (Department department : getAllDepartments()) {
+            if (id == department.getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public void addProduct(Product product) {
-        if (checker.isInDepartment(product.getId())) {
+        if (isInDepartment(product.getDepartmentId())) {
             products.add(product);
         } else {
             throw new IllegalArgumentException("Product dep isn't exist");
@@ -53,7 +57,7 @@ public class Controller implements DepartmentService, ProductService {
 
     @Override
     public void renewProduct(int id, Product product) {
-        if (checker.isInDepartment(id)) {
+        if (isInDepartment(product.getDepartmentId())) {
             products.renew(id, product);
         } else {
             throw new IllegalArgumentException("Product dep isn't exist");
@@ -67,8 +71,8 @@ public class Controller implements DepartmentService, ProductService {
 
     @Override
     public List<Product> allProductInDepartment(int idDep) {
-        if (checker.isInDepartment(idDep)) {
-            return logic.allProductInDepartment(idDep);
+        if (isInDepartment(idDep)) {
+            return Logic.allProductInDepartment(idDep);
         } else {
             throw new IllegalArgumentException("Product dep isn't exist");
         }
@@ -81,13 +85,17 @@ public class Controller implements DepartmentService, ProductService {
 
     @Override
     public void deleteDepartment(int id) {
-        List<Product> prodToDel = getAllProducts();
-        for (Product product : prodToDel) {
-            if (product.getDepartmentId() == id) {
-                products.delete(product.getId());
+        if (isInDepartment(id)) {
+            List<Product> prodToDel = getAllProducts();
+            for (Product product : prodToDel) {
+                if (product.getDepartmentId() == id) {
+                    products.delete(product.getId());
+                }
             }
+            departments.delete(id);
+        } else {
+            throw new IllegalArgumentException("Dep isn't exist");
         }
-        departments.delete(id);
     }
 
     @Override
@@ -97,10 +105,10 @@ public class Controller implements DepartmentService, ProductService {
 
     @Override
     public void renewDepartment(int id, Department department) {
-        if (checker.isInDepartment(id)) {
+        if (isInDepartment(id)) {
             departments.renew(id, department);
         } else {
-            throw new IllegalArgumentException("Product dep isn't exist");
+            throw new IllegalArgumentException("Dep isn't exist");
         }
     }
 
@@ -111,6 +119,6 @@ public class Controller implements DepartmentService, ProductService {
 
     @Override
     public List<Department> findEmptyDepartments() {
-        return logic.findEmptyDepartments();
+        return Logic.findEmptyDepartments();
     }
 }

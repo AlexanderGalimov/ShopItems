@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Logic {
-    Controller controller = Controller.getINSTANCE();
+    private static final Controller controller = Controller.getINSTANCE();
 
-    public List<Product> allProductInDepartment(int idDep) {
+    public static List<Product> allProductInDepartment(int idDep) {
         List<Product> prods = new ArrayList<>();
         for (Product product : controller.getAllProducts()) {
             if (product.getDepartmentId() == idDep) {
@@ -20,7 +20,7 @@ public class Logic {
         return prods;
     }
 
-    public List<Department> findEmptyDepartments() {
+    public static List<Department> findEmptyDepartments() {
         List<Department> emptyDeps = new ArrayList<>();
         for (Department department : controller.getAllDepartments()) {
             if (allProductInDepartment(department.getId()).size() == 0) {

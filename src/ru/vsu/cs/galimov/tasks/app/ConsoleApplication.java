@@ -1,121 +1,74 @@
 package ru.vsu.cs.galimov.tasks.app;
 
+import ru.vsu.cs.galimov.tasks.command.*;
 import ru.vsu.cs.galimov.tasks.controller.Controller;
-import ru.vsu.cs.galimov.tasks.model_objects.Department;
-import ru.vsu.cs.galimov.tasks.model_objects.Product;
 
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleApplication {
     private static final Controller controller = Controller.getINSTANCE();
     private static final Scanner scanner = new Scanner(System.in);
+    private static boolean isRun = true;
+    private static final List<Command> commands = new ArrayList<>();
 
+    public ConsoleApplication() {
+        commands.add(new PrintAllDepartments(scanner, controller));
+        commands.add(new PrintAllProducts(scanner, controller));
+        commands.add(new CreateProduct(scanner, controller));
+        commands.add(new CreateDepartment(scanner, controller));
+        commands.add(new UpdateProduct(scanner, controller));
+        commands.add(new UpdateDepartment(scanner, controller));
+        commands.add(new PrintEmptyDepartments(scanner, controller));
+        commands.add(new PrintAllProductInDepartment(scanner, controller));
+        commands.add(new DeleteDepartment(scanner, controller));
+        commands.add(new DeleteProduct(scanner, controller));
+    }
 
-    private static void menu() {
+    private void menu() {
         System.out.println("Меню");
-        System.out.println("""
-                (1) - Вывести список отделов
-                (2) - Вывести список продуктов
-                (3) - Создать продукт
-                (4) - Создать отдел
-                (5) - Редактировать продукт
-                (6) - Редактировать отдел
-                (7) - Вывести пустые отделы
-                (8) - Показать товары в отделе
-                (9) - Выход""");
-    }
+//        System.out.println("""
+//                (1) - Вывести список отделов
+//                (2) - Вывести список продуктов
+//                (3) - Создать продукт
+//                (4) - Создать отдел
+//                (5) - Редактировать продукт
+//                (6) - Редактировать отдел
+//                (7) - Вывести пустые отделы
+//                (8) - Показать товары в отделе
+//                (9) - Удалить отдел
+//                (10) - Удалить продукт
+//                (11) - Выход""");
 
-    private void createProduct() {
         try {
-            System.out.print("Введите название продукта: ");
-            String name = scanner.nextLine();
-            System.out.print("Введите цену: ");
-            double price = scanner.nextDouble();
-            System.out.print("Введите отдел: ");
-            int idDepartment = scanner.nextInt();
+            System.out.println("Choose command");
+            for (int i = 0; i < commands.size(); i++) {
+                System.out.println(i + " " + commands.get(i).getCommandName());
+            }
+            System.out.println("Exit: 11");
 
-            controller.addProduct(new Product(name, price, idDepartment));
-
-        } catch (Exception exception) {
-            System.out.println("Illegal argument");
+            int choice = scanner.nextInt();
+            if (choice >= 0 && choice < commands.size()){
+                System.out.println("Choice " + choice);
+                commands.get(choice).runCommand();
+            }
+            else if(choice == commands.size() + 1){
+                changeState();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("incorrect command");
         }
     }
 
-    private void createDepartment() {
-        try {
-            System.out.print("Введите название: ");
-            String name = scanner.nextLine();
-            System.out.print("Введите время работы: ");
-            String workingHours = scanner.next();
-            // 31/12/1998
-            controller.addDepartment(new Department(name, new SimpleDateFormat("dd/MM/yyyy").parse(workingHours)));
-
-        } catch (Exception exception) {
-            System.out.println("Illegal argument");
+    public void run() {
+        while (isRun) {
+            menu();
         }
     }
 
-    private void printAllDepartments() {
-        List<Department> deps = controller.getAllDepartments();
-        for (Department dep : deps) {
-            System.out.println(dep);
-        }
-    }
-
-    private void printAllProducts() {
-        List<Product> products = controller.getAllProducts();
-        for (Product product : products) {
-            System.out.println(product);
-        }
-    }
-
-    private void updateProduct() {
-        printAllProducts();
-        System.out.print("Введите айди продукта: ");
-        int id = scanner.nextInt();
-        System.out.print("Введите название продукта: ");
-        String name = scanner.nextLine();
-        System.out.print("Введите цену: ");
-        double price = scanner.nextDouble();
-        System.out.print("Введите отдел: ");
-        int idDepartment = scanner.nextInt();
-
-        controller.renewProduct(id, new Product(id, name, price, idDepartment));
-    }
-
-    private void updateDepartment() {
-        try {
-            printAllProducts();
-            System.out.print("Введите айди отдела: ");
-            int id = scanner.nextInt();
-            System.out.print("Введите название отдела: ");
-            String name = scanner.nextLine();
-            System.out.print("Введите часы работы: ");
-            String workingHours = scanner.next();
-            // 31/12/1998
-            controller.renewDepartment(id, new Department(id, name, new SimpleDateFormat("dd/MM/yyyy").parse(workingHours)));
-
-        } catch (Exception exception) {
-            System.out.println("Illegal argument");
-        }
-    }
-
-
-    private void printEmptyDepartments() {
-        for (Department department : controller.findEmptyDepartments()) {
-            System.out.println(department);
-        }
-    }
-
-    private void printDepartmentProducts() {
-        System.out.print("Введите айди отдела: ");
-        int id = scanner.nextInt();
-
-        for (Product product : controller.allProductInDepartment(id)) {
-            System.out.println(product);
-        }
+    private void changeState() {
+        isRun = false;
     }
 
 }

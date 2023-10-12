@@ -1,5 +1,7 @@
 package ru.vsu.cs.galimov.tasks;
 
+import ru.vsu.cs.galimov.tasks.app.ConsoleApplication;
+
 public class Main {
 
     // Взять задачу, пробовать писать
@@ -26,6 +28,7 @@ public class Main {
     // Показывать товары в отделе, отделы без товаров, весь список товаров в магазине.
 
     public static void main(String[] args) {
-
+        ConsoleApplication app = new ConsoleApplication();
+        app.run();
     }
 }

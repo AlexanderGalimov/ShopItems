@@ -6,11 +6,12 @@ import ru.vsu.cs.galimov.tasks.model_objects.Department;
 import java.util.ArrayList;
 import java.util.List;
 
-public class inMemoryRepositoryDepartmentImplementation implements DepartmentRepository, IdGenerator {
+// todo
+public class InMemoryRepositoryDepartmentImplementation implements DepartmentRepository, IdGenerator {
     private final List<Department> deps;
     private int currentDepId = 0;
 
-    public inMemoryRepositoryDepartmentImplementation() {
+    public InMemoryRepositoryDepartmentImplementation() {
         this.deps = new ArrayList<>();
     }
 
