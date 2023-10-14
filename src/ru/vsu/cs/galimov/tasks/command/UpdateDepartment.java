@@ -1,14 +1,17 @@
 package ru.vsu.cs.galimov.tasks.command;
 
-import ru.vsu.cs.galimov.tasks.controller.Controller;
 import ru.vsu.cs.galimov.tasks.model_objects.Department;
+import ru.vsu.cs.galimov.tasks.service.ServiceDepartmentImplementation;
 
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class UpdateDepartment extends Command{
-    public UpdateDepartment(Scanner scanner, Controller controller) {
-        super(scanner, controller);
+    protected final ServiceDepartmentImplementation serviceDepartmentImplementation;
+
+    public UpdateDepartment(Scanner scanner) {
+        super(scanner);
+        serviceDepartmentImplementation = ServiceDepartmentImplementation.getINSTANCE();
     }
 
     @Override
@@ -21,7 +24,7 @@ public class UpdateDepartment extends Command{
             System.out.print("Enter new date: ");
             String workingHours = scanner.next();
             // 31/12/1998
-            controller.renewDepartment(id, new Department(id, name, new SimpleDateFormat("dd/MM/yyyy").parse(workingHours)));
+            serviceDepartmentImplementation.renew(id, new Department(id, name, new SimpleDateFormat("dd/MM/yyyy").parse(workingHours)));
 
         } catch (Exception exception) {
             System.out.println("Illegal argument");

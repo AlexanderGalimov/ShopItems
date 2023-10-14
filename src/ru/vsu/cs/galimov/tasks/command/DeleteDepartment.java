@@ -1,20 +1,21 @@
 package ru.vsu.cs.galimov.tasks.command;
 
-import ru.vsu.cs.galimov.tasks.controller.Controller;
+import ru.vsu.cs.galimov.tasks.service.ServiceDepartmentImplementation;
 
 import java.util.Scanner;
 
 public class DeleteDepartment extends Command{
-    public DeleteDepartment(Scanner scanner, Controller controller) {
-        super(scanner, controller);
+    protected final ServiceDepartmentImplementation serviceDepartmentImplementation;
+    public DeleteDepartment(Scanner scanner) {
+        super(scanner);
+        serviceDepartmentImplementation = ServiceDepartmentImplementation.getINSTANCE();
     }
 
     @Override
     public void runCommand() {
         System.out.print("Enter id dep for del: ");
         int id = scanner.nextInt();
-
-        controller.deleteDepartment(id);
+        serviceDepartmentImplementation.delete(id);
     }
 
     @Override

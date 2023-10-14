@@ -1,14 +1,16 @@
 package ru.vsu.cs.galimov.tasks.command;
 
-import ru.vsu.cs.galimov.tasks.controller.Controller;
 import ru.vsu.cs.galimov.tasks.model_objects.Product;
+import ru.vsu.cs.galimov.tasks.service.ServiceProductImplementation;
 
 import java.util.Scanner;
 
 public class CreateProduct extends Command{
+    protected final ServiceProductImplementation serviceProductImplementation;
 
-    public CreateProduct(Scanner scanner, Controller controller) {
-        super(scanner, controller);
+    public CreateProduct(Scanner scanner) {
+        super(scanner);
+        serviceProductImplementation = ServiceProductImplementation.getINSTANCE();
     }
 
     @Override
@@ -20,7 +22,7 @@ public class CreateProduct extends Command{
         System.out.print("Enter department id: ");
         int idDepartment = scanner.nextInt();
 
-        controller.addProduct(new Product(name, price, idDepartment));
+        serviceProductImplementation.add(new Product(name, price, idDepartment));
     }
 
     @Override

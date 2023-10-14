@@ -1,13 +1,16 @@
 package ru.vsu.cs.galimov.tasks.command;
 
-import ru.vsu.cs.galimov.tasks.controller.Controller;
 import ru.vsu.cs.galimov.tasks.model_objects.Product;
+import ru.vsu.cs.galimov.tasks.service.ServiceProductImplementation;
 
 import java.util.Scanner;
 
 public class UpdateProduct extends Command{
-    public UpdateProduct(Scanner scanner, Controller controller) {
-        super(scanner, controller);
+    protected final ServiceProductImplementation serviceProductImplementation;
+
+    public UpdateProduct(Scanner scanner) {
+        super(scanner);
+        serviceProductImplementation = ServiceProductImplementation.getINSTANCE();
     }
 
     @Override
@@ -21,7 +24,7 @@ public class UpdateProduct extends Command{
         System.out.print("Enter dep id: ");
         int idDepartment = scanner.nextInt();
 
-        controller.renewProduct(id, new Product(id, name, price, idDepartment));
+        serviceProductImplementation.renew(id, new Product(id, name, price, idDepartment));
     }
 
     @Override

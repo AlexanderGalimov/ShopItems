@@ -4,17 +4,24 @@ import ru.vsu.cs.galimov.tasks.model_objects.Product;
 
 import java.util.List;
 
-// todo
-public interface ProductService {
-    void addProduct(Product product);
+public interface ProductService extends Served<Product>{
 
-    void deleteProduct(int id);
+    @Override
+    void add(Product object);
 
-    Product findProductById(int id);
+    @Override
+    void delete(int id);
 
-    void renewProduct(int id, Product product);
+    @Override
+    Product findById(int id);
 
-    List<Product> getAllProducts();
+    @Override
+    void renew(int id, Product object);
+
+    @Override
+    List<Product> getAll();
 
     List<Product> allProductInDepartment(int idDep);
+
+
 }

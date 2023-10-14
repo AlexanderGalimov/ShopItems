@@ -1,29 +1,27 @@
 package ru.vsu.cs.galimov.tasks.app;
 
 import ru.vsu.cs.galimov.tasks.command.*;
-import ru.vsu.cs.galimov.tasks.controller.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleApplication {
-    private static final Controller controller = Controller.getINSTANCE();
     private static final Scanner scanner = new Scanner(System.in);
     private static boolean isRun = true;
     private static final List<Command> commands = new ArrayList<>();
 
     public ConsoleApplication() {
-        commands.add(new PrintAllDepartments(scanner, controller));
-        commands.add(new PrintAllProducts(scanner, controller));
-        commands.add(new CreateProduct(scanner, controller));
-        commands.add(new CreateDepartment(scanner, controller));
-        commands.add(new UpdateProduct(scanner, controller));
-        commands.add(new UpdateDepartment(scanner, controller));
-        commands.add(new PrintEmptyDepartments(scanner, controller));
-        commands.add(new PrintAllProductInDepartment(scanner, controller));
-        commands.add(new DeleteDepartment(scanner, controller));
-        commands.add(new DeleteProduct(scanner, controller));
+        commands.add(new PrintAllDepartments(scanner));
+        commands.add(new PrintAllProducts(scanner));
+        commands.add(new CreateProduct(scanner));
+        commands.add(new CreateDepartment(scanner));
+        commands.add(new UpdateProduct(scanner));
+        commands.add(new UpdateDepartment(scanner));
+        commands.add(new PrintEmptyDepartments(scanner));
+        commands.add(new PrintAllProductInDepartment(scanner));
+        commands.add(new DeleteDepartment(scanner));
+        commands.add(new DeleteProduct(scanner));
     }
 
     private void menu() {

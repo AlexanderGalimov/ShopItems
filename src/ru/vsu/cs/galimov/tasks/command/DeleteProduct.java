@@ -1,12 +1,14 @@
 package ru.vsu.cs.galimov.tasks.command;
 
-import ru.vsu.cs.galimov.tasks.controller.Controller;
+import ru.vsu.cs.galimov.tasks.service.ServiceProductImplementation;
 
 import java.util.Scanner;
 
 public class DeleteProduct extends Command{
-    public DeleteProduct(Scanner scanner, Controller controller) {
-        super(scanner, controller);
+    protected final ServiceProductImplementation serviceProductImplementation;
+    public DeleteProduct(Scanner scanner) {
+        super(scanner);
+        serviceProductImplementation = ServiceProductImplementation.getINSTANCE();
     }
 
     @Override
@@ -14,7 +16,7 @@ public class DeleteProduct extends Command{
         System.out.print("Enter id prod to del: ");
         int id = scanner.nextInt();
 
-        controller.deleteProduct(id);
+        serviceProductImplementation.delete(id);
     }
 
     @Override

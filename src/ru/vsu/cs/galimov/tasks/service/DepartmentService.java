@@ -4,16 +4,21 @@ import ru.vsu.cs.galimov.tasks.model_objects.Department;
 
 import java.util.List;
 
-public interface DepartmentService {
-    void addDepartment(Department department);
+public interface DepartmentService extends Served<Department>{
+    @Override
+    void add(Department object);
 
-    void deleteDepartment(int id);
+    @Override
+    void delete(int id);
 
-    Department findDepartmentById(int id);
+    @Override
+    Department findById(int id);
 
-    void renewDepartment(int id, Department department);
+    @Override
+    void renew(int id, Department object);
 
-    List<Department> getAllDepartments();
+    @Override
+    List<Department> getAll();
 
     List<Department> findEmptyDepartments();
 
