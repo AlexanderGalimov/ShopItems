@@ -5,15 +5,15 @@ import java.util.Date;
 public class Department implements ShopStored {
     protected Integer id;
     protected String name;
-    protected Date workingHours;
+    protected String workingHours;
 
-    public Department(String name, Date workingHours) {
+    public Department(String name, String workingHours) {
         this.id = null;
         this.name = name;
         this.workingHours = workingHours;
     }
 
-    public Department(Integer id, String name, Date workingHours) {
+    public Department(Integer id, String name, String workingHours) {
         this.id = id;
         this.name = name;
         this.workingHours = workingHours;
@@ -33,7 +33,7 @@ public class Department implements ShopStored {
         return name;
     }
 
-    public Date getWorkingHours() {
+    public String getWorkingHours() {
         return workingHours;
     }
 

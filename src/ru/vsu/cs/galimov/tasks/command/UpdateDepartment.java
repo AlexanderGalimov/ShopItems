@@ -23,8 +23,7 @@ public class UpdateDepartment extends Command{
             String name = scanner.next();
             System.out.print("Enter new date: ");
             String workingHours = scanner.next();
-            // 31/12/1998
-            serviceDepartmentImplementation.renew(id, new Department(id, name, new SimpleDateFormat("dd/MM/yyyy").parse(workingHours)));
+            serviceDepartmentImplementation.renew(id, new Department(id, name, workingHours));
 
         } catch (Exception exception) {
             System.out.println("Illegal argument");
