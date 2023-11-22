@@ -7,11 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryRepositoryProductImplementation implements ProductRepository, IdGenerator {
+    private static InMemoryRepositoryProductImplementation INSTANCE;
     private final List<Product> products;
     private int currProdId = 0;
 
     public InMemoryRepositoryProductImplementation() {
         this.products = new ArrayList<>();
+    }
+
+    public static InMemoryRepositoryProductImplementation getINSTANCE() {
+        if (INSTANCE == null) {
+            INSTANCE = new InMemoryRepositoryProductImplementation();
+        }
+        return INSTANCE;
     }
 
     @Override

@@ -7,11 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryRepositoryDepartmentImplementation implements DepartmentRepository, IdGenerator {
+    private static InMemoryRepositoryDepartmentImplementation INSTANCE;
     private final List<Department> deps;
     private int currentDepId = 0;
 
     public InMemoryRepositoryDepartmentImplementation() {
         this.deps = new ArrayList<>();
+    }
+
+    public static InMemoryRepositoryDepartmentImplementation getINSTANCE() {
+        if (INSTANCE == null) {
+            INSTANCE = new InMemoryRepositoryDepartmentImplementation();
+        }
+        return INSTANCE;
     }
 
     @Override

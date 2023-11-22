@@ -3,15 +3,16 @@ package ru.vsu.cs.galimov.tasks.service;
 import ru.vsu.cs.galimov.tasks.logic.Logic;
 import ru.vsu.cs.galimov.tasks.model_objects.Product;
 import ru.vsu.cs.galimov.tasks.repository.InMemoryRepositoryProductImplementation;
+import ru.vsu.cs.galimov.tasks.repository.ProductRepository;
 
 import java.util.List;
 
-public class ServiceProductImplementation implements ProductService{
+public class ServiceProductImplementation implements ProductService {
     private static ServiceProductImplementation INSTANCE;
-    private final InMemoryRepositoryProductImplementation products;
+    private final ProductRepository products;
 
     public ServiceProductImplementation() {
-        this.products = new InMemoryRepositoryProductImplementation();
+        this.products = InMemoryRepositoryProductImplementation.getINSTANCE();
     }
 
     public static ServiceProductImplementation getINSTANCE() {

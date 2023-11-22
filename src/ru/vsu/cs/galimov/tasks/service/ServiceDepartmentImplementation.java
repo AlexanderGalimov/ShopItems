@@ -2,16 +2,17 @@ package ru.vsu.cs.galimov.tasks.service;
 
 import ru.vsu.cs.galimov.tasks.logic.Logic;
 import ru.vsu.cs.galimov.tasks.model_objects.Department;
+import ru.vsu.cs.galimov.tasks.repository.DepartmentRepository;
 import ru.vsu.cs.galimov.tasks.repository.InMemoryRepositoryDepartmentImplementation;
 
 import java.util.List;
 
 public class ServiceDepartmentImplementation implements DepartmentService{
     private static ServiceDepartmentImplementation INSTANCE;
-    private final InMemoryRepositoryDepartmentImplementation departments;
+    private final DepartmentRepository departments;
 
     public ServiceDepartmentImplementation() {
-        departments = new InMemoryRepositoryDepartmentImplementation();
+        departments = InMemoryRepositoryDepartmentImplementation.getINSTANCE();
     }
 
     public static ServiceDepartmentImplementation getINSTANCE() {
