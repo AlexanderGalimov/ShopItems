@@ -6,7 +6,6 @@ import ru.vsu.cs.galimov.tasks.model_objects.Department;
 import java.util.ArrayList;
 import java.util.List;
 
-// todo
 public class InMemoryRepositoryDepartmentImplementation implements DepartmentRepository, IdGenerator {
     private final List<Department> deps;
     private int currentDepId = 0;

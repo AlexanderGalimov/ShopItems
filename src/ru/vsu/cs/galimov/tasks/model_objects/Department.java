@@ -1,7 +1,5 @@
 package ru.vsu.cs.galimov.tasks.model_objects;
 
-import java.util.Date;
-
 public class Department implements ShopStored {
     protected Integer id;
     protected String name;

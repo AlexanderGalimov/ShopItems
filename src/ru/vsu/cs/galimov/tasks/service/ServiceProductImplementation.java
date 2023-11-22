@@ -21,7 +21,6 @@ public class ServiceProductImplementation implements ProductService{
         return INSTANCE;
     }
 
-
     @Override
     public void add(Product object) {
         if (Logic.isInDepartment(object.getDepartmentId())) {
