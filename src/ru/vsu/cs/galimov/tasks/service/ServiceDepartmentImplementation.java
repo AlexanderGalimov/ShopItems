@@ -2,6 +2,7 @@ package ru.vsu.cs.galimov.tasks.service;
 
 import ru.vsu.cs.galimov.tasks.logic.Logic;
 import ru.vsu.cs.galimov.tasks.model_objects.Department;
+import ru.vsu.cs.galimov.tasks.repository.DbDepartmentRepositoryImplementation;
 import ru.vsu.cs.galimov.tasks.repository.DepartmentRepository;
 import ru.vsu.cs.galimov.tasks.repository.InMemoryRepositoryDepartmentImplementation;
 
@@ -12,7 +13,8 @@ public class ServiceDepartmentImplementation implements DepartmentService{
     private final DepartmentRepository departments;
 
     public ServiceDepartmentImplementation() {
-        departments = InMemoryRepositoryDepartmentImplementation.getINSTANCE();
+        //departments = InMemoryRepositoryDepartmentImplementation.getINSTANCE();
+        this.departments = DbDepartmentRepositoryImplementation.getINSTANCE();
     }
 
     public static ServiceDepartmentImplementation getINSTANCE() {

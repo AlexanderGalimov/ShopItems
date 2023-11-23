@@ -16,12 +16,12 @@ public class FindDepartmentById extends Command {
     public void runCommand() {
         System.out.print("Enter id dep: ");
         int id = scanner.nextInt();
-        serviceDepartmentImplementation.findById(id);
+        System.out.println(serviceDepartmentImplementation.findById(id));
     }
 
     @Override
     public String getCommandName() {
-        return "Find Department by ID";
+        return "Find Department by Id";
     }
 }
 

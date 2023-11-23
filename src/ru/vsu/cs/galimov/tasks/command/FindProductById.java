@@ -16,7 +16,7 @@ public class FindProductById extends Command {
     public void runCommand() {
         System.out.print("Enter id product: ");
         int id = scanner.nextInt();
-        serviceProductImplementation.findById(id);
+        System.out.println(serviceProductImplementation.findById(id));
     }
 
     @Override

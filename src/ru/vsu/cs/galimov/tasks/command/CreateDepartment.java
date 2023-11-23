@@ -16,9 +16,9 @@ public class CreateDepartment extends Command {
     @Override
     public void runCommand() {
         try {
-            System.out.print("Enter name: ");
+            System.out.println("Enter name: ");
             String name = scanner.next();
-            System.out.print("Enter date: ");
+            System.out.println("Enter working hours: ");
             String workingHours = scanner.next();
             serviceDepartmentImplementation.add(new Department(name, workingHours));
 

@@ -22,29 +22,33 @@ public class ConsoleApplication {
         commands.add(new PrintAllProductInDepartment(scanner));
         commands.add(new DeleteDepartment(scanner));
         commands.add(new DeleteProduct(scanner));
+        commands.add(new FindProductById(scanner));
+        commands.add(new FindDepartmentById(scanner));
     }
 
     private void menu() {
         System.out.println("Меню");
 //        System.out.println("""
-//                (1) - Вывести список отделов
-//                (2) - Вывести список продуктов
-//                (3) - Создать продукт
-//                (4) - Создать отдел
-//                (5) - Редактировать продукт
-//                (6) - Редактировать отдел
-//                (7) - Вывести пустые отделы
-//                (8) - Показать товары в отделе
-//                (9) - Удалить отдел
-//                (10) - Удалить продукт
-//                (11) - Выход""");
+//                (0) - Вывести список отделов
+//                (1) - Вывести список продуктов
+//                (2) - Создать продукт
+//                (3) - Создать отдел
+//                (4) - Редактировать продукт
+//                (5) - Редактировать отдел
+//                (6) - Вывести пустые отделы
+//                (7) - Показать товары в отделе
+//                (8) - Удалить отдел
+//                (9) - Удалить продукт
+//                (10) - Найти продукт по id""");
+//                (11) - Найти отдел по id""");
+//                (12) - Выход""");
 
         try {
             System.out.println("Choose command");
             for (int i = 0; i < commands.size(); i++) {
                 System.out.println(i + " " + commands.get(i).getCommandName());
             }
-            System.out.println("Exit: 11");
+            System.out.println("Exit: 12");
 
             int choice = scanner.nextInt();
             if (choice >= 0 && choice < commands.size()){

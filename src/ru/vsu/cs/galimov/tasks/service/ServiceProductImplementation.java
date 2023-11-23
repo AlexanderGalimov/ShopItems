@@ -2,6 +2,7 @@ package ru.vsu.cs.galimov.tasks.service;
 
 import ru.vsu.cs.galimov.tasks.logic.Logic;
 import ru.vsu.cs.galimov.tasks.model_objects.Product;
+import ru.vsu.cs.galimov.tasks.repository.DbProductRepositotyImplementation;
 import ru.vsu.cs.galimov.tasks.repository.InMemoryRepositoryProductImplementation;
 import ru.vsu.cs.galimov.tasks.repository.ProductRepository;
 
@@ -12,7 +13,8 @@ public class ServiceProductImplementation implements ProductService {
     private final ProductRepository products;
 
     public ServiceProductImplementation() {
-        this.products = InMemoryRepositoryProductImplementation.getINSTANCE();
+        //this.products = InMemoryRepositoryProductImplementation.getINSTANCE();
+        this.products = DbProductRepositotyImplementation.getINSTANCE();
     }
 
     public static ServiceProductImplementation getINSTANCE() {

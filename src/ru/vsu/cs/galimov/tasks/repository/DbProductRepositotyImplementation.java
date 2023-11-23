@@ -11,7 +11,7 @@ public class DbProductRepositotyImplementation implements ProductRepository {
     private static final ConnectionManager manager = ConnectionManager.getInstance();
     private static DbProductRepositotyImplementation INSTANCE;
 
-    public static DbProductRepositotyImplementation getInstance() {
+    public static DbProductRepositotyImplementation getINSTANCE() {
         if (INSTANCE == null) {
             INSTANCE = new DbProductRepositotyImplementation();
         }
