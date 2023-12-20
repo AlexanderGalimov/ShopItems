@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="ShopItems:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/ShopItems_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="ShopItems/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="ShopItems" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="mysql.connector.java" />
+          <element id="file-copy" path="D:/Tomcat/apache-tomcat-10.1.17/webapps/examples/WEB-INF/lib/taglibs-standard-impl-1.2.5-migrated-0.0.1.jar" />
+          <element id="file-copy" path="D:/Tomcat/apache-tomcat-10.1.17/webapps/examples/WEB-INF/lib/taglibs-standard-spec-1.2.5-migrated-0.0.1.jar" />
+        </element>
+        <element id="directory" name="src">
+          <element id="dir-copy" path="$PROJECT_DIR$/src" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
