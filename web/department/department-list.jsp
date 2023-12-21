@@ -40,8 +40,6 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Working hours</th>
-                <th>Operation Edit</th>
-                <th>Operation Delete</th>
             </tr>
             </thead>
             <tbody>

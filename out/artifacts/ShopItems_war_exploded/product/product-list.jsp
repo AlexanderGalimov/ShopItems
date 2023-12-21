@@ -13,7 +13,7 @@
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark"
-         style="background-color: tomato">
+         style="background-color: orchid">
         <ul class="navbar-nav">
             <li><a href="<%=request.getContextPath()%>/department/getAll"
                    class="nav-link">Departments</a></li>

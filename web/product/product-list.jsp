@@ -41,8 +41,6 @@
                 <th>name</th>
                 <th>price</th>
                 <th>departmentId</th>
-                <th>Operation Edit</th>
-                <th>Operation Delete</th>
             </tr>
             </thead>
             <tbody>

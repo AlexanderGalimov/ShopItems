@@ -27,8 +27,8 @@ import java.util.List;
 
 public class ProductServlet extends HttpServlet {
 
-    private ServiceProductImplementation serviceProductImplementation;
-    private ServiceDepartmentImplementation serviceDepartmentImplementation;
+    private final ServiceProductImplementation serviceProductImplementation;
+    private final ServiceDepartmentImplementation serviceDepartmentImplementation;
 
     public ProductServlet() {
         this.serviceProductImplementation = ServiceProductImplementation.getINSTANCE();
